@@ -1,6 +1,7 @@
 package com.neosoft.spring.poc.repository;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
@@ -35,5 +36,6 @@ List<User> findByName(String firstname);
 	
 	public List<User> findByNameOrSurnameOrPincode(String name,String surname,String pincode);
 
+	public Optional<User> findByPhoneno(long phoneno);
 
 }

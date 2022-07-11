@@ -64,6 +64,12 @@ public class UserService {
 		return userRepo.findByPincode(pincode);
 	}
 	
+	public Optional<User> getUsersByPhoneno(long phoneno) {
+		 return userRepo.findByPhoneno(phoneno);
+		
+	}
+	
+	
 	
 	public List<User> sortByDoj() {
 		

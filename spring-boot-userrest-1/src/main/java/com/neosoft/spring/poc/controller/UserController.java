@@ -27,8 +27,13 @@ public class UserController {
 	
 	UserRepository userRepository;
 	
-	@PostMapping("/add/users")
-	public User addUsers(@RequestBody User user){
+	@PostMapping("/add/users/{phoneno}")
+	public User addUsers(@RequestBody User user, @PathVariable long phoneno){
+		if(userService.getUsersByPhoneno(phoneno).isPresent()) {
+			throw new InvalidRequestException("User with this Phone number " + 
+    			phoneno + " is already exist.");
+}
+			
 		 return userService.addUsers(user);
 	}
 	
@@ -103,8 +108,8 @@ public class UserController {
 	}
 	
 	@PutMapping("/update/users/{id}")
-	public User updateInfo(@RequestBody User user , @PathVariable int id) {
-		if(userService.getUsersById(id).isPresent()) {
+	public User updateInfo(@RequestBody User user , @PathVariable int id ) {
+		if(userService.getUsersById(id).isPresent() ) {
 			user.setId(id);
 			return userService.update(user);
 		}
